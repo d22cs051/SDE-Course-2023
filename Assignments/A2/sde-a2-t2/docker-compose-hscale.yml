@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx/nginx-hscale.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: ./backend
+    deploy:
+          replicas: 3
